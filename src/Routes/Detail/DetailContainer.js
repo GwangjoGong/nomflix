@@ -8,6 +8,7 @@ export default class DetailContainer extends React.Component {
     const {
       location: { pathname }
     } = props
+
     this.state = {
       result: null,
       error: null,
@@ -29,6 +30,7 @@ export default class DetailContainer extends React.Component {
       return push('/')
     }
     let result = null
+
     try {
       if (isMovie) {
         const request = await moviesApi.movieDetail(parsedId)

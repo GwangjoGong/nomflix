@@ -9,7 +9,7 @@ import Home from 'Routes/Home'
 import Search from 'Routes/Search'
 import TV from 'Routes/TV'
 import Header from 'Components/Header'
-import Detail from 'Routes/Detail/DetailPresenter'
+import Detail from 'Routes/Detail'
 
 const router = () => (
   <Router>

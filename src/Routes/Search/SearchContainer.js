@@ -11,7 +11,8 @@ export default class SearchContainer extends Component {
     error: null
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault()
     if (this.state.searchTerm !== '') {
       this.searchByTerm()
     }
@@ -37,13 +38,22 @@ export default class SearchContainer extends Component {
       })
     } catch (err) {
       this.setState({
-        error: err.messages
+        error: err.message
       })
     } finally {
       this.setState({
         loading: false
       })
     }
+  }
+
+  updateTerm = (e) => {
+    const {
+      target: { value }
+    } = e
+    this.setState({
+      searchTerm: value
+    })
   }
 
   render() {
@@ -56,6 +66,7 @@ export default class SearchContainer extends Component {
         loading={loading}
         error={error}
         handleSubmit={this.handleSubmit}
+        updateTerm={this.updateTerm}
       />
     )
   }
