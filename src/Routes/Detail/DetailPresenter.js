@@ -107,8 +107,9 @@ const Tab = styled(Link)`
   border-top: 2px solid #f0932b;
   border-bottom: 2px solid #f0932b;
   border-right: 2px solid #f0932b;
-  color: ${(props) => (props.current ? "white" : "#f0932b")};
-  background-color: ${(props) => (props.current ? "#f0932b" : "transparent")};
+  color: ${(props) => (props.current === "true" ? "white" : "#f0932b")};
+  background-color: ${(props) =>
+    props.current === "true" ? "#f0932b" : "transparent"};
   width: 120px;
   height: 40px;
   display: flex;
@@ -186,23 +187,23 @@ const Detail = ({ location, match, result, casts, loading, error }) => {
           <ViewMore href={`https://www.imdb.com/title/${result.imdb_id}`}>
             View More
           </ViewMore>
-          <Casts casts={casts} />
+          {casts && casts.length > 0 && <Casts casts={casts} />}
           <TabsContainer>
             <Tab
-              current={location.pathname.includes("/video")}
+              current={location.pathname.includes("/video").toString()}
               to={match.url + "/video"}
             >
               Videos
             </Tab>
             <Tab
-              current={location.pathname.includes("/production")}
+              current={location.pathname.includes("/production").toString()}
               to={match.url + "/production"}
             >
               Productions
             </Tab>
             {result.original_name && (
               <Tab
-                current={location.pathname.includes("/series")}
+                current={location.pathname.includes("/series").toString()}
                 to={match.url + "/series"}
               >
                 Series

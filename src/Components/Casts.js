@@ -44,6 +44,11 @@ const CastItem = styled.div`
   background-repeat: no-repeat;
   position: relative;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
   &:hover {
     ${Name} {
       opacity: 1;
@@ -56,17 +61,21 @@ const Casts = ({ casts }) => {
     <>
       <Header>Casts</Header>
       <CastsContainer>
-        {casts.map((cast) => (
+        {casts.slice(0, 13).map((cast) => (
           <CastItem
+            key={cast.cast_id}
             bgUrl={
               cast.profile_path
-                ? `https://image.tmdb.org/t/p/w300${cast.profile_path}`
+                ? `https://image.tmdb.org/t/p/w200${cast.profile_path}`
                 : "https://nomadcoders.co/m.png"
             }
           >
             <Name>{cast.name}</Name>
           </CastItem>
         ))}
+        {casts.length >= 14 && (
+          <CastItem>{`And ${casts.length - 14} more`}</CastItem>
+        )}
       </CastsContainer>
     </>
   );

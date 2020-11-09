@@ -58,7 +58,6 @@ export default class DetailContainer extends React.Component {
 
   render() {
     const { result, error, loading, casts } = this.state;
-    console.log(casts);
     return (
       <DetailPresenter
         result={result}
