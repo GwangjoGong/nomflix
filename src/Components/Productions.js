@@ -14,7 +14,27 @@ const CompanyContainer = styled.div`
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, 180px);
-  grid-auto-rows: 200px;
+  grid-auto-rows: 260px;
+`;
+
+const Name = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 10px;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: 0.3s ease-in-out;
 `;
 
 const Company = styled.div`
@@ -22,6 +42,13 @@ const Company = styled.div`
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  position: relative;
+
+  &:hover {
+    ${Name} {
+      opacity: 1;
+    }
+  }
 `;
 
 const CountryContainer = styled.div`
@@ -46,15 +73,18 @@ const Productions = ({ companies, countries }) => {
         <>
           <Header>Production Companies</Header>
           <CompanyContainer>
-            {companies.map(
-              (comp) =>
-                comp.logo_path && (
-                  <Company
-                    key={comp.id}
-                    bgUrl={`https://image.tmdb.org/t/p/w300${comp.logo_path}`}
-                  ></Company>
-                )
-            )}
+            {companies.map((comp) => (
+              <Company
+                key={comp.id}
+                bgUrl={
+                  comp.logo_path
+                    ? `https://image.tmdb.org/t/p/w300${comp.logo_path}`
+                    : "https://nomadcoders.co/m.png"
+                }
+              >
+                <Name>{comp.name}</Name>
+              </Company>
+            ))}
           </CompanyContainer>
         </>
       )}

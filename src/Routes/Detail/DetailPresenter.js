@@ -8,6 +8,7 @@ import { Link, Route, Switch, withRouter } from "react-router-dom";
 import Video from "Components/Video";
 import Productions from "Components/Productions";
 import Series from "Components/Series";
+import Casts from "Components/Casts";
 
 const Container = styled.div`
   width: 100%;
@@ -132,7 +133,7 @@ const Tab = styled(Link)`
     border-right: 2px solid #f0932b;
   }
 `;
-const Detail = ({ location, match, result, loading, error }) => {
+const Detail = ({ location, match, result, casts, loading, error }) => {
   return loading ? (
     <>
       <Helmet>
@@ -185,6 +186,7 @@ const Detail = ({ location, match, result, loading, error }) => {
           <ViewMore href={`https://www.imdb.com/title/${result.imdb_id}`}>
             View More
           </ViewMore>
+          <Casts casts={casts} />
           <TabsContainer>
             <Tab
               current={location.pathname.includes("/video")}
@@ -244,6 +246,18 @@ const Detail = ({ location, match, result, loading, error }) => {
 
 Detail.propTypes = {
   result: PropTypes.object,
+  casts: PropTypes.arrayOf(
+    PropTypes.shape({
+      cast_id: PropTypes.number,
+      character: PropTypes.string,
+      credit_id: PropTypes.string,
+      gender: PropTypes.number,
+      id: PropTypes.number,
+      name: PropTypes.string,
+      order: PropTypes.number,
+      profile_path: PropTypes.string,
+    })
+  ),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
 };
