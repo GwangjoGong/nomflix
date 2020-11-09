@@ -6,6 +6,7 @@ import Loader from 'Components/Loader'
 import Message from 'Components/Message'
 import Poster from 'Components/Poster'
 import { Helmet } from 'react-helmet'
+import NowPlaying from 'Components/NowPlaying'
 
 const Container = styled.div`
   padding: 0 10px;
@@ -21,23 +22,24 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => (
       <Loader />
     ) : (
       <Container>
-        {topRated && topRated.length > 0 && (
-          <Section title='Top Rated Shows'>
-            {topRated.map((show) => (
-              <Poster
-                key={show.id}
-                id={show.id}
-                year={show.first_air_date && show.first_air_date.split('-')[0]}
-                title={show.original_name}
-                rating={show.vote_average}
-                imageUrl={show.poster_path}
-              />
-            ))}
-          </Section>
+        {airingToday && airingToday.length > 0 && (
+          // <Section title='Airing Today'>
+          //   {airingToday.map((show) => (
+          //     <Poster
+          //       key={show.id}
+          //       id={show.id}
+          //       year={show.first_air_date && show.first_air_date.split('-')[0]}
+          //       title={show.original_name}
+          //       rating={show.vote_average}
+          //       imageUrl={show.poster_path}
+          //     />
+          //   ))}
+          // </Section>
+          <NowPlaying data={airingToday} isMovie={false} />
         )}
 
         {popular && popular.length > 0 && (
-          <Section title='Popular Shows'>
+          <Section title='Popular Shows' hover={true}>
             {popular.map((show) => (
               <Poster
                 key={show.id}
@@ -51,9 +53,9 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => (
           </Section>
         )}
 
-        {airingToday && airingToday.length > 0 && (
-          <Section title='Airing Today'>
-            {airingToday.map((show) => (
+        {topRated && topRated.length > 0 && (
+          <Section title='Top Rated Shows'>
+            {topRated.map((show) => (
               <Poster
                 key={show.id}
                 id={show.id}

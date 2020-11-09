@@ -20,12 +20,31 @@ const List = styled.ul`
   display: flex;
 `
 
+const Icon = styled.div`
+  height: 30px;
+  width: 30px;
+  background: url('https://nomadcoders.co/m.png');
+  background-size: cover;
+  margin-left: 20px;
+`
+
+const Title = styled.div`
+  height: 50px;
+  color: #f0932b;
+  font-weight: 600;
+  margin-right: 20px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+`
+
 const Item = styled.li`
   width: 80px;
   height: 50px;
   text-align: center;
   border-bottom: 3px solid
-    ${(props) => (props.current ? '#3498db' : 'transparent')};
+    ${(props) => (props.current ? '#f0932b' : 'transparent')};
   transition: border-bottom 0.3s ease-in-out;
 `
 
@@ -38,6 +57,8 @@ const SLink = styled(Link)`
 
 const Header = ({ location: { pathname } }) => (
   <SHeader>
+    <Icon></Icon>
+    <Title>NOMFLIX</Title>
     <List>
       <Item current={pathname === '/'}>
         <SLink to='/'>Movies</SLink>
