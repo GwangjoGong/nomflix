@@ -55,6 +55,7 @@ const NowPlaying = ({ data, isMovie }) => {
   const carousel = useRef()
 
   useEffect(() => {
+    if (handler) clearInterval(handler)
     setHandler(
       setInterval(() => {
         if (carousel.current) {
@@ -76,6 +77,7 @@ const NowPlaying = ({ data, isMovie }) => {
     return () => {
       clearInterval(handler)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
