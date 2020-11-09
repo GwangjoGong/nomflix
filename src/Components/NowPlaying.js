@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { CarouselProvider, Slider, Slide } from "pure-react-carousel";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { Link } from "react-router-dom";
@@ -120,4 +121,8 @@ const NowPlaying = ({ data, isMovie }) => {
   );
 };
 
+NowPlaying.propTypes = {
+  data: PropTypes.array,
+  isMovie: PropTypes.bool,
+};
 export default NowPlaying;
