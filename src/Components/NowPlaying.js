@@ -30,12 +30,16 @@ const Info = styled.div`
   left: 30px;
   display: flex;
   flex-direction: column;
+  @media (max-width: 1080px) {
+    bottom: 30px;
+  }
 `
 
 const Title = styled.div`
   color: white;
-  font-size: 40px;
+  font-size: 60px;
   font-weight: 500;
+  margin-bottom: 20px;
 `
 
 const SLink = styled(Link)`
@@ -94,7 +98,10 @@ const NowPlaying = ({ data, isMovie }) => {
           <Slide key={`car-slide-${idx}`} index={idx}>
             <Content>
               <Backdrop
-                bgUrl={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}></Backdrop>
+                bgUrl={
+                  item.backdrop_path &&
+                  `https://image.tmdb.org/t/p/original${item.backdrop_path}`
+                }></Backdrop>
               <Info>
                 <Title>
                   {isMovie ? item.original_title : item.original_name}

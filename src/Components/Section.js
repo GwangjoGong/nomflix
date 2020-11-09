@@ -7,6 +7,10 @@ const Container = styled.div`
   padding: 30px;
   margin-top: ${(props) => (props.hover ? '-350px' : '0')};
   position: relative;
+
+  @media (max-width: 1080px) {
+    margin-top: 0;
+  }
 `
 
 const Title = styled.span`

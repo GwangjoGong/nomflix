@@ -40,8 +40,9 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => (
 
         {popular && popular.length > 0 && (
           <Section title='Popular Shows' hover={true}>
-            {popular.map((show) => (
+            {popular.map((show, index) => (
               <Poster
+                index={index}
                 key={show.id}
                 id={show.id}
                 year={show.first_air_date && show.first_air_date.split('-')[0]}
@@ -55,8 +56,9 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => (
 
         {topRated && topRated.length > 0 && (
           <Section title='Top Rated Shows'>
-            {topRated.map((show) => (
+            {topRated.map((show, index) => (
               <Poster
+                index={index}
                 key={show.id}
                 id={show.id}
                 year={show.first_air_date && show.first_air_date.split('-')[0]}
