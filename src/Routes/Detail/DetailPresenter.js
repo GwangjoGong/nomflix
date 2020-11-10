@@ -9,6 +9,7 @@ import Video from "Components/Video";
 import Productions from "Components/Productions";
 import Series from "Components/Series";
 import Casts from "Components/Casts";
+import Crews from "Components/Crews";
 
 const Container = styled.div`
   width: 100%;
@@ -134,7 +135,7 @@ const Tab = styled(Link)`
     border-right: 2px solid #f0932b;
   }
 `;
-const Detail = ({ location, match, result, casts, loading, error }) => {
+const Detail = ({ location, match, result, credit, loading, error }) => {
   return loading ? (
     <>
       <Helmet>
@@ -187,7 +188,13 @@ const Detail = ({ location, match, result, casts, loading, error }) => {
           <ViewMore href={`https://www.imdb.com/title/${result.imdb_id}`}>
             View More
           </ViewMore>
-          {casts && casts.length > 0 && <Casts casts={casts} />}
+          {credit.cast && credit.cast.length > 0 && (
+            <Casts casts={credit.cast} />
+          )}
+          {result.original_name && credit.crew && credit.crew.length > 0 && (
+            <Crews crews={credit.crew} />
+          )}
+
           <TabsContainer>
             <Tab
               current={location.pathname.includes("/video").toString()}
@@ -247,18 +254,7 @@ const Detail = ({ location, match, result, casts, loading, error }) => {
 
 Detail.propTypes = {
   result: PropTypes.object,
-  casts: PropTypes.arrayOf(
-    PropTypes.shape({
-      cast_id: PropTypes.number,
-      character: PropTypes.string,
-      credit_id: PropTypes.string,
-      gender: PropTypes.number,
-      id: PropTypes.number,
-      name: PropTypes.string,
-      order: PropTypes.number,
-      profile_path: PropTypes.string,
-    })
-  ),
+  credit: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
 };
